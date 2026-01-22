@@ -63,7 +63,7 @@ class HomePage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(50),
                     ),
                     child: Text(
-                      "Login",
+                      "Iniciar Sesión",
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 18,
@@ -84,7 +84,7 @@ class HomePage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(50),
                     ),
                     child: Text(
-                      "Register",
+                      "Registrarse",
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 18,
