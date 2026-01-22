@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'core/theme/app_colors.dart';
+import 'screens/signin_screen.dart';
+import 'screens/signup_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,86 +12,104 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: HomePage());
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: HomePage(),
+    );
   }
 }
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.background,
       body: SafeArea(
         child: Container(
           width: double.infinity,
           height: MediaQuery.of(context).size.height,
-          padding: EdgeInsets.symmetric(horizontal: 30, vertical: 50),
+          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 50),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
+              // 🧾 Títulos
               Column(
                 children: <Widget>[
                   Text(
                     "Bienvenido",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 32,
+                      color: AppColors.title,
+                    ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 16),
                   Text(
                     "Reporta problemas de tu ciudad y contribuye a mejorar tu comunidad.",
                     textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.grey[700], fontSize: 15),
+                    style: TextStyle(
+                      color: AppColors.subtitle,
+                      fontSize: 15,
+                      height: 1.4,
+                    ),
                   ),
                 ],
               ),
-              Container(
+
+              // 🖼️ Imagen
+              Image.asset(
+                "assets/resources/welcome.png",
                 height: MediaQuery.of(context).size.height / 3,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage("assets/resources/welcome.png"),
-                  ),
-                ),
+                fit: BoxFit.contain,
               ),
+
+              // 🔘 Botones
               Column(
                 children: <Widget>[
+                  // Botón principal
                   MaterialButton(
                     minWidth: double.infinity,
-                    height: 60,
+                    height: 56,
                     onPressed: () {
-                      // Navigate to login screen
+                      Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => const LoginPage()));
                     },
-                    color: Color(0xff0095FF),
+                    color: AppColors.primary,
                     shape: RoundedRectangleBorder(
-                      side: BorderSide(color: Colors.black),
                       borderRadius: BorderRadius.circular(50),
                     ),
-                    child: Text(
+                    child: const Text(
                       "Iniciar Sesión",
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
-                        fontSize: 18,
-                        color: Colors.white,
+                        fontSize: 17,
+                        color: AppColors.buttonText,
                       ),
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 16),
+
+                  // Botón secundario
                   MaterialButton(
                     minWidth: double.infinity,
-                    height: 60,
+                    height: 56,
                     onPressed: () {
-                      // Navigate to register screen
+                      Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => const RegisterPage()));
                     },
-                    color: Color(0xff0095FF),
+                    color: AppColors.secondary,
                     shape: RoundedRectangleBorder(
-                      side: BorderSide(color: Colors.black),
                       borderRadius: BorderRadius.circular(50),
                     ),
-                    child: Text(
+                    child: const Text(
                       "Registrarse",
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
-                        fontSize: 18,
-                        color: Colors.white,
+                        fontSize: 17,
+                        color: AppColors.buttonText,
                       ),
                     ),
                   ),
@@ -101,3 +122,4 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+
