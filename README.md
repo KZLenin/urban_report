@@ -100,4 +100,4 @@ Debido al peso de la aplicación y la inclusión de módulos de Mapas y GPS, pue
 > **Versión**: 1.0.0+1
 > **Requisito**: Habilitar permisos de GPS y Cámara para el funcionamiento de los Módulos 3.3 y 3.4.
 
-[📦 Descargar UrbanReport APK]([PON_AQUÍ_TU_LINK_DE_GITHUB_O_DRIVE](https://epnecuador-my.sharepoint.com/:u:/g/personal/lenin_taco_epn_edu_ec/IQAECYaT2b8FRKRgtoT17WqCAScOitFi8-NAlM_BER0eQT8?e=1rsJVh))
+[📦 Descargar UrbanReport APK]([https://epnecuador-my.sharepoint.com/:u:/g/personal/lenin_taco_epn_edu_ec/IQAECYaT2b8FRKRgtoT17WqCAScOitFi8-NAlM_BER0eQT8?e=1rsJVh])
