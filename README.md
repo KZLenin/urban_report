@@ -85,8 +85,19 @@ CREATE TRIGGER on_auth_user_created
 ```
 
 ## 🛠️ Instalación y Configuración
-### Dependencias: Asegúrate de que tu pubspec.yaml incluya supabase_flutter, flutter_map, geolocator, image_picker y latlong2.
+### Dependencias: 
+  * Asegúrate de que tu pubspec.yaml incluya supabase_flutter, flutter_map, geolocator, image_picker y latlong2.
 ### Permisos:
   * Android: Configura ACCESS_FINE_LOCATION y CAMERA en el AndroidManifest.xml.
   * iOS: Añade NSLocationWhenInUseUsageDescription en Info.plist.
-### Storage: Crea un bucket público llamado fotos_reportes en Supabase y configura las políticas RLS (INSERT para usuarios autenticados y SELECT para todos). 
+### Storage: 
+  * Crea un bucket público llamado fotos_reportes en Supabase y configura las políticas RLS (INSERT para usuarios autenticados y SELECT para todos). 
+## 📥 Descarga de la Aplicación
+
+Debido al peso de la aplicación y la inclusión de módulos de Mapas y GPS, puedes descargar el instalador desde el siguiente enlace:
+
+> [!IMPORTANT]
+> **Versión**: 1.0.0+1
+> **Requisito**: Habilitar permisos de GPS y Cámara para el funcionamiento de los Módulos 3.3 y 3.4.
+
+[📦 Descargar UrbanReport APK]([PON_AQUÍ_TU_LINK_DE_GITHUB_O_DRIVE](https://epnecuador-my.sharepoint.com/:u:/g/personal/lenin_taco_epn_edu_ec/IQAECYaT2b8FRKRgtoT17WqCAScOitFi8-NAlM_BER0eQT8?e=1rsJVh))
