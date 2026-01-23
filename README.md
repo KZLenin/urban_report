@@ -57,3 +57,36 @@ CREATE TABLE reportes (
   foto_url TEXT,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
 );
+```
+
+### Gestión de Perfiles (Automatización)
+```sql
+CREATE TABLE perfiles (
+  id UUID REFERENCES auth.users(id) ON DELETE CASCADE PRIMARY KEY,
+  nombre TEXT,
+  correo TEXT,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
+);
+
+-- Función Trigger
+CREATE OR REPLACE FUNCTION public.handle_new_user()
+RETURNS trigger AS $$
+BEGIN
+  INSERT INTO public.perfiles (id, nombre, correo)
+  VALUES (new.id, new.raw_user_meta_data->>'full_name', new.email);
+  RETURN new;
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+
+-- Disparador
+CREATE TRIGGER on_auth_user_created
+  AFTER INSERT ON auth.users
+  FOR EACH ROW EXECUTE PROCEDURE public.handle_new_user();
+```
+
+## 🛠️ Instalación y Configuración
+### Dependencias: Asegúrate de que tu pubspec.yaml incluya supabase_flutter, flutter_map, geolocator, image_picker y latlong2.
+### Permisos:
+  * Android: Configura ACCESS_FINE_LOCATION y CAMERA en el AndroidManifest.xml.
+  * iOS: Añade NSLocationWhenInUseUsageDescription en Info.plist.
+### Storage: Crea un bucket público llamado fotos_reportes en Supabase y configura las políticas RLS (INSERT para usuarios autenticados y SELECT para todos). 
