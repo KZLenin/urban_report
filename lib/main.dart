@@ -1,23 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:urban_report/core/config/supabase_config.dart';
 import 'core/theme/app_colors.dart';
 import 'screens/signin_screen.dart';
 import 'screens/signup_screen.dart';
+import 'screens/main_screen.dart'; // Asegúrate de importar tu pantalla principal de Tabs
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  try {
+    await Supabase.initialize(
+      url: SupabaseConfig.supabaseUrl,
+      anonKey: SupabaseConfig.anonKey,
+    );
+  } catch (e) {
+    debugPrint("Error inicializando Supabase: $e");
+  }
+
+  // Verificamos si ya existe una sesión activa
+  final session = Supabase.instance.client.auth.currentSession;
+
+  runApp(MyApp(isLoggedIn: session != null));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final bool isLoggedIn;
+  const MyApp({super.key, required this.isLoggedIn});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      // Si está logueado va directo a MainScreen (Tabs), si no, a HomePage (Bienvenida)
+      home: isLoggedIn ? const MainScreen() : const HomePage(),
     );
   }
 }
+
+// ... El resto de tu HomePage se mantiene igual
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -74,8 +95,12 @@ class HomePage extends StatelessWidget {
                     minWidth: double.infinity,
                     height: 56,
                     onPressed: () {
-                      Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const LoginPage()));
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const LoginPage(),
+                        ),
+                      );
                     },
                     color: AppColors.primary,
                     shape: RoundedRectangleBorder(
@@ -97,8 +122,12 @@ class HomePage extends StatelessWidget {
                     minWidth: double.infinity,
                     height: 56,
                     onPressed: () {
-                      Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const RegisterPage()));
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const RegisterPage(),
+                        ),
+                      );
                     },
                     color: AppColors.secondary,
                     shape: RoundedRectangleBorder(
@@ -122,4 +151,3 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-

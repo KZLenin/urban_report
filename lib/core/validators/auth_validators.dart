@@ -38,6 +38,19 @@ class AuthValidators {
     return null;
   }
 
+  //Valida que las contraseñas coincidan
+  static String? confirmPassword(String? value, String? originalPassword) {
+    if (value == null || value.isEmpty) {
+      return 'Confirma tu contraseña';
+    }
+
+    if (value != originalPassword) {
+      return 'Las contraseñas no coinciden';
+    }
+
+    return null;
+  }
+
   /// Valida contraseñas más seguras (opcional)
   static String? strongPassword(String? value) {
     if (value == null || value.isEmpty) {
